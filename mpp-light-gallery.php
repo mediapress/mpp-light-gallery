@@ -111,7 +111,7 @@ class MPP_Light_Gallery_Photo_Helper {
 	}
 
 	public function load_text_domain() {
-		load_plugin_textdomain( 'mpp-light-gallery', false, $this->path . 'languages/' );
+		load_plugin_textdomain( 'mpp-light-gallery', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 
 	/**
