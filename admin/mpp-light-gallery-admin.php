@@ -1,16 +1,36 @@
 <?php
+/**
+ * Plugin admin settings
+ *
+ * @package mpp-light-gallery
+ */
 
+// If file access directly code will exit.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Class MPP_Light_Gallery_Admin
+ */
 class MPP_Light_Gallery_Admin {
 
+	/**
+	 * Class instance
+	 *
+	 * @var MPP_Light_Gallery_Admin
+	 */
 	private static $instance = null;
 
+	/**
+	 * The constructor.
+	 */
 	private function __construct() {
-		//setup hooks
 		$this->setup_hooks();
 	}
 
-
 	/**
+	 * Get the instance
 	 *
 	 * @return MPP_Light_Gallery_Admin
 	 */
@@ -23,34 +43,34 @@ class MPP_Light_Gallery_Admin {
 		return self::$instance;
 	}
 
-
+	/**
+	 * Callback to register new settings.
+	 */
 	private function setup_hooks() {
-		//register admin settings fields
 		add_action( 'mpp_admin_register_settings', array( $this, 'register_settings' ) );
 	}
 
 	/**
+	 * Register plugin admin settings
 	 *
-	 * @param MPP_Admin_Settings_Page $page
+	 * @param MPP_Admin_Settings_Page $page Admin settings page.
 	 */
 	public function register_settings( $page ) {
 
-		//$page = mpp_admin()->get_page();
-
 		$panel = $page->get_panel( 'theming' );
 
+		$section = $panel->add_section( 'theme-light-gallery-settings', __( 'Light Gallery Settings', 'mpp-light-gallery' ) );
 
-		$panel->add_section( 'theme-light-gallery-settings', __( 'Light Gallery Settings', 'mpp-light-gallery' ) )
-		      ->add_field( array(
-			      'name'    => 'light_gallery_enable_on_cover_click',
-			      'label'   => __( 'Enable on Gallery Cover Click?', 'mpp-light-gallery' ),
-			      'type'    => 'radio',
-			      'default' => 1,
-			      'options' => array(
-				      1 => __( 'Yes', 'mpp-light-gallery' ),
-				      0 => __( 'No', 'mpp-light-gallery' ),
-			      )
-		      ) );
+		$section->add_field( array(
+			'name'    => 'light_gallery_enable_on_cover_click',
+			'label'   => __( 'Enable on Gallery Cover Click?', 'mpp-light-gallery' ),
+			'type'    => 'radio',
+			'default' => 1,
+			'options' => array(
+				1 => __( 'Yes', 'mpp-light-gallery' ),
+				0 => __( 'No', 'mpp-light-gallery' ),
+			),
+		) );
 	}
 }
 
