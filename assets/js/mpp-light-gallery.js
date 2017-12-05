@@ -1,9 +1,4 @@
-/**
- * Created by ravi on 7/3/16.
- */
 jQuery(document).ready(function ($) {
-
-    //$('.mpp-light-gallery').lightGallery({ download:false });
 
     $(document).on('click', '.mpp-gallery-photo .mpp-gallery-cover', function () {
 
@@ -13,7 +8,6 @@ jQuery(document).ready(function ($) {
         build_light_gallery(gallery_id, $this);
 
         return false;
-
     });
 
     $(document).on('click', '.mpp-light-gallery-activity a', function () {
@@ -36,14 +30,12 @@ jQuery(document).ready(function ($) {
         return false;
     })
 
-
     function build_light_gallery(gallery_id, $el) {
 
         var url = MPP_Light_Gallery.url;
         var media_id = ( $el.attr('data-media-id') != undefined )
             ? $el.attr('data-media-id')
             : 0;
-
 
         $.get(url, {
                 action: "mpp_light_gallery_get_media",
@@ -65,7 +57,6 @@ jQuery(document).ready(function ($) {
                     dynamicEl: resp
                 });
             }, 'json');
-
     }
 
     function build_light_on_activity(activity_id, $el) {
@@ -85,7 +76,5 @@ jQuery(document).ready(function ($) {
                     dynamicEl: resp
                 });
             }, 'json');
-
     }
-
 });
