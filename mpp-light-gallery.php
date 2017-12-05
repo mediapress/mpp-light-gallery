@@ -14,6 +14,11 @@
  * License: GPL2 or Above
  */
 
+// If file access directly code will exit.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class MPP_Light_Gallery_Photo_Helper
  */

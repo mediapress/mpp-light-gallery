@@ -5,8 +5,7 @@
  * @package mpp-light-gallery
  */
 
-
-// If access directly over web code will exit.
+// If file access directly code will exit.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -54,7 +53,7 @@ class MPP_Light_Gallery_View extends MPP_Gallery_View {
 	 * Activity display
 	 *
 	 * @param array $media_ids List of media ids.
-	 * @param int $activity_id Activity id.
+	 * @param int   $activity_id Activity id.
 	 */
 	public function activity_display( $media_ids = array(), $activity_id = 0 ) {
 
