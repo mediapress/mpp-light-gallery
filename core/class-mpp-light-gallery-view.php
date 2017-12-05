@@ -29,7 +29,7 @@ class MPP_Light_Gallery_View extends MPP_Gallery_View {
 		return self::$instance;
 	}
 
-	public function activity_display( $media_ids = array() ) {
+	public function activity_display( $media_ids = array(), $activity_id = 0 ) {
 
 		if ( empty( $media_ids ) ) {
 			return;
