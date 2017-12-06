@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function mpp_light_gallery_ajax_handler() {
 
-	$gallery_id = absint( $_REQUEST['gallery_id'] );
+	$gallery_id = absint( $_GET['gallery_id'] );
 
 	$gallery = mpp_get_gallery( $gallery_id );
 
@@ -24,7 +24,9 @@ function mpp_light_gallery_ajax_handler() {
 	}
 
 	$media_ids = mpp_get_all_media_ids( array(
-		'gallery_id' => $gallery_id,
+		'gallery_id'   => $gallery->id,
+		'component'    => $gallery->component,
+		'component_id' => $gallery->component_id,
 	) );
 
 	$statuses = (array) mpp_get_accessible_statuses( $gallery->component, $gallery->component_id, get_current_user_id() );
@@ -62,7 +64,7 @@ add_action( 'wp_ajax_nopriv_mpp_light_gallery_get_media', 'mpp_light_gallery_aja
  */
 function mpp_light_activity_ajax_handler() {
 
-	$activity_id = absint( $_REQUEST['activity_id'] );
+	$activity_id = absint( $_GET['activity_id'] );
 
 	if ( ! $activity_id ) {
 		exit( 0 );

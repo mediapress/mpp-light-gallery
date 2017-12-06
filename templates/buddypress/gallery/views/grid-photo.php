@@ -5,8 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div class="mpp-light-gallery">
-	<?php while ( mpp_have_media() ): mpp_the_media(); ?>
-		<div class="mpp-u <?php mpp_media_class( mpp_get_media_grid_column_class() ); ?>">
+	<?php while ( mpp_have_media() ) : mpp_the_media(); ?>
+        <div class="mpp-u <?php mpp_media_class( mpp_get_media_grid_column_class() ); ?>">
 			<?php do_action( 'mpp_before_media_item' ); ?>
 			<div class="mpp-item-meta mpp-media-meta mpp-media-meta-top">
 				<?php do_action( 'mpp_media_meta_top' ); ?>

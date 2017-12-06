@@ -61,7 +61,7 @@ class MPP_Light_Gallery_View extends MPP_Gallery_View {
 			return;
 		}
 
-		mpp_get_template( 'buddypress/activity/views/light-gallery-photo.php', array(), mpp_light_gallery()->get_path() . 'templates' );
+		mpp_get_template( 'buddypress/activity/views/grid-photo.php', array(), mpp_light_gallery()->get_path() . 'templates' );
 	}
 
 	/**
@@ -81,6 +81,6 @@ class MPP_Light_Gallery_View extends MPP_Gallery_View {
 			return;
 		}
 
-		mpp_get_template( 'buddypress/gallery/views/light-gallery-photo.php', array(), mpp_light_gallery()->get_path() . 'templates' );
+		mpp_get_template( 'buddypress/gallery/views/grid-photo.php', array(), mpp_light_gallery()->get_path() . 'templates' );
 	}
 }

@@ -18,7 +18,7 @@ jQuery(document).ready(function ($) {
         build_light_on_activity(activity_id, $this);
 
         return false;
-    })
+    });
 
     $('.mpp-light-gallery img').click(function (e) {
 
@@ -28,7 +28,7 @@ jQuery(document).ready(function ($) {
         build_light_gallery(gallery_id, $this);
 
         return false;
-    })
+    });
 
     function build_light_gallery(gallery_id, $el) {
 
