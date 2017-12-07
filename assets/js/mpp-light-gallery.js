@@ -1,5 +1,13 @@
 jQuery(document).ready(function ($) {
 
+    if ( 'light-gallery' == MPP_Light_Gallery.activity_default_view ) {
+        $(document).off('click', '.mpp-activity-media-list a');
+    }
+
+    if ( MPP_Light_Gallery.enabled_on_cover ) {
+        $(document).off('click', '.mpp-gallery a.mpp-gallery-cover');
+    }
+
     $(document).on('click', '.mpp-gallery-photo .mpp-gallery-cover', function () {
 
         var $this = $(this);
@@ -20,7 +28,7 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
-    $('.mpp-light-gallery img').click(function (e) {
+    $('.mpp-light-gallery img').click(function () {
 
         var $this = $(this),
             gallery_id = $this.attr('data-gallery-id');

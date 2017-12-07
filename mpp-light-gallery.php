@@ -78,7 +78,7 @@ class MPP_Light_Gallery_Photo_Helper {
 		add_action( 'mpp_loaded', array( $this, 'load' ) );
 		add_action( 'mpp_setup_core', array( $this, 'register_views' ) );
 		add_action( 'mpp_init', array( $this, 'load_text_domain' ) );
-		add_action( 'mpp_enqueue_scripts', array( $this, 'load_assets' ) );
+		add_action( 'mpp_enqueue_scripts', array( $this, 'load_assets' ), 999 );
 	}
 
 	/**
@@ -118,7 +118,9 @@ class MPP_Light_Gallery_Photo_Helper {
 		wp_register_script( 'mpp-light-gallery-script', $this->url . 'assets/js/mpp-light-gallery.js', array( 'lg-mousewheel' ) );
 
 		$data = array(
-			'url' => admin_url( 'admin-ajax.php' ),
+			'url'              => admin_url( 'admin-ajax.php' ),
+			'enabled_on_cover' => mpp_light_gallery_enabled_for_gallery_cover(),
+			'activity_default_view' => mpp_get_option( 'activity_photo_default_view' ),
 		);
 
 		wp_localize_script( 'mpp-light-gallery-script', 'MPP_Light_Gallery', $data );
