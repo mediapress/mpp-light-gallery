@@ -104,12 +104,12 @@ class MPP_Light_Gallery_Photo_Helper {
 			return;
 		}
 
-		wp_register_style( 'jquery-light-gallery', $this->url . 'assets/css/light-gallery.min.css' );
-		wp_register_style( 'mpp-light-gallery', $this->url . 'assets/css/mpp-light-gallery.css', array( 'jquery-light-gallery' ) );
+		wp_register_style( 'jquery-lightgallery', $this->url . 'assets/css/lightgallery.min.css' );
+		wp_register_style( 'mpp-lightgallery', $this->url . 'assets/css/mpp-lightgallery.css', array( 'jquery-lightgallery' ) );
 
-		wp_register_script( 'jquery-light-gallery', $this->url . 'assets/js/light-gallery-all.min.js', array( 'jquery' ) );
+		wp_register_script( 'jquery-lightgallery', $this->url . 'assets/js/lightgallery-all.min.js', array( 'jquery' ) );
 		wp_register_script( 'jquery-mousewheel', $this->url . 'assets/js/jquery.mousewheel.min.js', array( 'jquery' ) );
-		wp_register_script( 'mpp-light-gallery', $this->url . 'assets/js/mpp-light-gallery.js', array( 'jquery-light-gallery', 'jquery-mousewheel' ) );
+		wp_register_script( 'mpp-lightgallery', $this->url . 'assets/js/mpp-lightgallery.js', array( 'jquery-lightgallery', 'jquery-mousewheel' ) );
 
 		$data = array(
 			'url'              => admin_url( 'admin-ajax.php' ),
@@ -117,10 +117,10 @@ class MPP_Light_Gallery_Photo_Helper {
 			'activity_default_view' => mpp_get_option( 'activity_photo_default_view' ),
 		);
 
-		wp_localize_script( 'mpp-light-gallery', 'MPP_Light_Gallery', $data );
+		wp_localize_script( 'mpp-lightgallery', 'MPP_Light_Gallery', $data );
 
-		wp_enqueue_style( 'mpp-light-gallery' );
-		wp_enqueue_script( 'mpp-light-gallery' );
+		wp_enqueue_style( 'mpp-lightgallery' );
+		wp_enqueue_script( 'mpp-lightgallery' );
 	}
 
 	/**
