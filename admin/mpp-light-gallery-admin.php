@@ -61,16 +61,40 @@ class MPP_Light_Gallery_Admin {
 
 		$section = $panel->add_section( 'theme-light-gallery-settings', __( 'Light Gallery Settings', 'mpp-light-gallery' ) );
 
-		$section->add_field( array(
-			'name'    => 'light_gallery_enable_on_cover_click',
-			'label'   => __( 'Enable on Gallery Cover Click?', 'mpp-light-gallery' ),
-			'type'    => 'radio',
-			'default' => 1,
-			'options' => array(
-				1 => __( 'Yes', 'mpp-light-gallery' ),
-				0 => __( 'No', 'mpp-light-gallery' ),
+		$fields = array(
+			array(
+				'name'    => 'light_gallery_on_gallery_cover',
+				'label'   => __( 'Enable on Gallery Cover Click?', 'mpp-light-gallery' ),
+				'type'    => 'radio',
+				'default' => 1,
+				'options' => array(
+					1 => __( 'Yes', 'mpp-light-gallery' ),
+					0 => __( 'No', 'mpp-light-gallery' ),
+				),
 			),
-		) );
+			array(
+				'name'    => 'light_gallery_on_single_gallery',
+				'label'   => __( 'Enable on single gallery page', 'mpp-light-gallery' ),
+				'type'    => 'radio',
+				'default' => 1,
+				'options' => array(
+					1 => __( 'Yes', 'mpp-light-gallery' ),
+					0 => __( 'No', 'mpp-light-gallery' ),
+				),
+			),
+			array(
+				'name'    => 'light_gallery_in_activity',
+				'label'   => __( 'Enable in activity', 'mpp-light-gallery' ),
+				'type'    => 'radio',
+				'default' => 1,
+				'options' => array(
+					1 => __( 'Yes', 'mpp-light-gallery' ),
+					0 => __( 'No', 'mpp-light-gallery' ),
+				),
+			),
+		);
+
+		$section->add_fields( $fields );
 	}
 }
 

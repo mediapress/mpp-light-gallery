@@ -1,6 +1,10 @@
 jQuery(document).ready(function ($) {
 
-    if ( MPP_Light_Gallery.enabled_on_cover ) {
+    MPP_Light_Gallery.enable_on_cover          = MPP_Light_Gallery.enable_on_cover - 0;
+    MPP_Light_Gallery.enable_in_activity       = MPP_Light_Gallery.enable_in_activity - 0;
+    MPP_Light_Gallery.enable_on_single_gallery = MPP_Light_Gallery.enable_on_single_gallery - 0;
+
+    if ( MPP_Light_Gallery.enable_on_cover ) {
 
         $(document).off('click', '.mpp-gallery a.mpp-gallery-cover');
 
@@ -15,25 +19,33 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    $(document).off('click', '.mpp-activity-photo-list a');
+    if ( MPP_Light_Gallery.enable_in_activity ) {
 
-    $(document).on('click', '.mpp-activity-photo-list a', function () {
+        $(document).off('click', '.mpp-activity-photo-list a');
 
-        var $this = $(this), activity_id = $this.data('mppActivityId');
+        $(document).on('click', '.mpp-activity-photo-list a', function () {
 
-        build_light_on_activity( activity_id, $this );
+            var $this = $(this), activity_id = $this.data('mppActivityId');
 
-        return false;
-    });
+            build_light_on_activity( activity_id, $this );
 
-    $('.mpp-single-gallery-photo-list img').click(function () {
+            return false;
+        });
+    }
 
-        var $this = $(this), gallery_id = $this.closest('div.mpp-single-gallery-photo-list').data('galleryId');
+    if ( MPP_Light_Gallery.enable_on_single_gallery ) {
 
-        build_light_gallery( gallery_id, $this );
+        $(document).off('click', '.mpp-single-gallery-photo-list img');
 
-        return false;
-    });
+        $('.mpp-single-gallery-photo-list img').click(function () {
+
+            var $this = $(this), gallery_id = $this.closest('div.mpp-single-gallery-photo-list').data('galleryId');
+
+            build_light_gallery( gallery_id, $this );
+
+            return false;
+        });
+    }
 
     function build_light_gallery(gallery_id, $el) {
 

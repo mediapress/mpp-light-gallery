@@ -82,7 +82,6 @@ class MPP_Light_Gallery_Photo_Helper {
 
 		$files = array(
 			'core/mpp-light-gallery-actions.php',
-			'core/mpp-light-gallery-functions.php',
 		);
 
 		if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
@@ -107,9 +106,10 @@ class MPP_Light_Gallery_Photo_Helper {
 		wp_register_script( 'mpp-lightgallery', $this->url . 'assets/js/mpp-lightgallery.js', array( 'jquery-lightgallery', 'jquery-mousewheel' ) );
 
 		$data = array(
-			'url'                   => admin_url( 'admin-ajax.php' ),
-			'enabled_on_cover'      => mpp_light_gallery_enabled_for_gallery_cover(),
-			'activity_default_view' => mpp_get_option( 'activity_photo_default_view' ),
+			'url'                       => admin_url( 'admin-ajax.php' ),
+			'enable_on_cover'          => mpp_get_option( 'light_gallery_on_gallery_cover' ),
+			'enable_on_single_gallery' => mpp_get_option( 'light_gallery_on_single_gallery' ),
+			'enable_in_activity'       => mpp_get_option( 'light_gallery_in_activity' ),
 		);
 
 		wp_localize_script( 'mpp-lightgallery', 'MPP_Light_Gallery', $data );
