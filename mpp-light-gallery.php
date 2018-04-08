@@ -70,7 +70,7 @@ class MPP_Light_Gallery_Photo_Helper {
 	public function setup() {
 
 		add_action( 'mpp_loaded', array( $this, 'load' ) );
-		add_action( 'mpp_setup_core', array( $this, 'register_views' ) );
+
 		add_action( 'mpp_init', array( $this, 'load_text_domain' ) );
 		add_action( 'mpp_enqueue_scripts', array( $this, 'load_assets' ), 999 );
 	}
@@ -81,7 +81,6 @@ class MPP_Light_Gallery_Photo_Helper {
 	public function load() {
 
 		$files = array(
-			'core/class-mpp-light-gallery-view.php',
 			'core/mpp-light-gallery-actions.php',
 			'core/mpp-light-gallery-functions.php',
 		);
@@ -100,10 +99,6 @@ class MPP_Light_Gallery_Photo_Helper {
 	 */
 	public function load_assets() {
 
-		if ( ! $this->maybe_load_assets() ) {
-			return;
-		}
-
 		wp_register_style( 'jquery-lightgallery', $this->url . 'assets/css/lightgallery.min.css' );
 		wp_register_style( 'mpp-lightgallery', $this->url . 'assets/css/mpp-lightgallery.css', array( 'jquery-lightgallery' ) );
 
@@ -112,8 +107,8 @@ class MPP_Light_Gallery_Photo_Helper {
 		wp_register_script( 'mpp-lightgallery', $this->url . 'assets/js/mpp-lightgallery.js', array( 'jquery-lightgallery', 'jquery-mousewheel' ) );
 
 		$data = array(
-			'url'              => admin_url( 'admin-ajax.php' ),
-			'enabled_on_cover' => mpp_light_gallery_enabled_for_gallery_cover(),
+			'url'                   => admin_url( 'admin-ajax.php' ),
+			'enabled_on_cover'      => mpp_light_gallery_enabled_for_gallery_cover(),
 			'activity_default_view' => mpp_get_option( 'activity_photo_default_view' ),
 		);
 
@@ -124,46 +119,10 @@ class MPP_Light_Gallery_Photo_Helper {
 	}
 
 	/**
-	 * Register new MediaPress Photo view
-	 */
-	public function register_views() {
-		mpp_register_gallery_view( 'photo', MPP_Light_Gallery_View::get_instance() );
-	}
-
-	/**
 	 * Load plugin text domain
 	 */
 	public function load_text_domain() {
 		load_plugin_textdomain( 'mpp-light-gallery', false, basename( dirname( __FILE__ ) ) . '/languages/' );
-	}
-
-	/**
-	 * Check if plugin should be loaded or not
-	 *
-	 * @todo check for more
-	 *
-	 * @return bool
-	 */
-	public function maybe_load_assets() {
-
-		if ( mpp_light_gallery_enabled_for_gallery_cover() ) {
-			return true;
-		}
-
-		if ( mpp_is_single_gallery() && mpp_get_gallery_view( mpp_get_current_gallery() )->get_id() == 'light-gallery' ) {
-			return true;
-		}
-
-		if ( ! function_exists( 'buddypress' ) ) {
-			return false;
-		}
-
-		if ( ( bp_is_activity_component() || bp_is_group_activity() ) &&
-		     mpp_get_activity_view( 'photo' )->get_id() == 'light-gallery' ) {
-			return true;
-		}
-
-		return false;
 	}
 
 	/**
