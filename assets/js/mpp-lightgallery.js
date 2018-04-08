@@ -21,7 +21,7 @@ jQuery(document).ready(function ($) {
 
     if ( MPP_Light_Gallery.enable_in_activity ) {
 
-        $(document).off('click', '.mpp-activity-photo-list a');
+        $(document).off('click', '.mpp-activity-media-list a.mpp-activity-media, .mpp-activity-media-list a.mpp-activity-item-title');
 
         $(document).on('click', '.mpp-activity-photo-list a', function () {
 
