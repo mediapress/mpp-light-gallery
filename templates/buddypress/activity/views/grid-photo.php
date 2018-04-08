@@ -13,11 +13,11 @@ $activity_id = bp_get_activity_id();
 
 $mppq = new MPP_Cached_Media_Query( array( 'in' => mpp_activity_get_displayable_media_ids( $activity_id ) ) );
 
-if ( $mppq->have_media() ):?>
+if ( $mppq->have_media() ) : ?>
 	<div class="mpp-light-gallery-activity mpp-container mpp-media-list mpp-activity-media-list mpp-activity-photo-list"
 	     data-activity-id="<?php echo $activity_id; ?>">
 
-		<?php while ( $mppq->have_media() ): $mppq->the_media(); ?>
+		<?php while ( $mppq->have_media() ) : $mppq->the_media(); ?>
 
 			<a href="<?php mpp_media_permalink(); ?>">
 				<img src="<?php mpp_media_src( 'thumbnail' ); ?>" class='mpp-attached-media-item'
