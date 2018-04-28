@@ -769,7 +769,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1050;
+  /* wp-adminbar uses z-index 9999. using 100050 allows us to show overlay over it*/
+  z-index: 100050;
   text-align: left;
   opacity: 0;
   -webkit-transition: opacity 0.15s ease 0s;
@@ -896,7 +897,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1040;
+  /* wp-adminbar uses z-index 9999. using 100040 allows us to show overlay over it*/
+  z-index: 100040; /* 1040*/
   background-color: #000;
   opacity: 0;
   -webkit-transition: opacity 0.15s ease 0s;
