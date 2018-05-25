@@ -72,7 +72,7 @@ class MPP_Light_Gallery_Photo_Helper {
 		add_action( 'mpp_loaded', array( $this, 'load' ) );
 		add_action( 'mpp_setup_core', array( $this, 'register_views' ) );
 		add_action( 'mpp_init', array( $this, 'load_text_domain' ) );
-		add_action( 'mpp_enqueue_scripts', array( $this, 'load_assets' ), 999 );
+		add_action( 'mpp_enqueue_scripts', array( $this, 'load_assets' ), 99 );
 	}
 
 	/**
