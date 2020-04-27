@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $query     = mpp_shortcode_get_media_data( 'query' );
 $media_ids = join( ',', $query->get_ids() );
 
-$gallery_ids = isset( $query->query, $query->query['post_parent__in'] ) ? $query->query['post_parent__in'] : array();
+$gallery_ids = empty( $query->query['post_parent__in'] ) ? array() : $query->query['post_parent__in'];
 
 ?>
 <?php if ( $query->have_media() ) : ?>
