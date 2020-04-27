@@ -128,6 +128,7 @@ function mpp_light_gallery_shortcode_ajax_handler() {
 		}
 
 		$info = array(
+			'id'      => $media_id,
 			'src'     => mpp_get_media_src( 'photo', $media_id ),
 			'thumb'   => mpp_get_media_src( 'thumbnail', $media_id ),
 			'subHtml' => '<h4>' . mpp_get_media_title( $media_id ) . '</h4><p>' . mpp_get_media_description( $media_id ) . '</p>',

@@ -39,9 +39,10 @@ jQuery(document).ready(function ($) {
     $('.mpp-light-gallery-shortcode img').click(function () {
 
         var $this = $(this),
-            gallery_ids = $this.parents('.mpp-light-gallery-shortcode').data('galleryIds');
+            gallery_ids = $this.parents('.mpp-light-gallery-shortcode').data('galleryIds'),
+            media_id = $this.parent().data('mppMediaId');
 
-        build_shortcode_light_gallery(gallery_ids, $this);
+        build_shortcode_light_gallery(gallery_ids, media_id, $this);
 
         return false;
     });
@@ -94,10 +95,8 @@ jQuery(document).ready(function ($) {
             }, 'json');
     }
 
-    function build_shortcode_light_gallery(gallery_ids, $el) {
-
+    function build_shortcode_light_gallery(gallery_ids, clicked_media_id, $el) {
         var url = MPP_Light_Gallery.url;
-        var position = $el.index();
 
         $.get(
             url,
@@ -106,9 +105,17 @@ jQuery(document).ready(function ($) {
                 galleries: gallery_ids
             },
             function (resp) {
+                var index = 0;//by default first
+                for (var i = 0; i < resp.length; i++) {
+                    if (clicked_media_id == resp[i].id) {
+                        index = i;
+                        break;
+                    }
+                }
+
                 $el.lightGallery({
                     download: false,
-                    index: position,
+                    index: index,
                     dynamic: true,
                     dynamicEl: resp
                 });
