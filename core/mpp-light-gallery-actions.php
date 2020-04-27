@@ -99,3 +99,48 @@ function mpp_light_activity_ajax_handler() {
 add_action( 'wp_ajax_mpp_light_activity_get_media', 'mpp_light_activity_ajax_handler' );
 add_action( 'wp_ajax_nopriv_mpp_light_activity_get_media', 'mpp_light_activity_ajax_handler' );
 
+
+/**
+ * Gallery view on activity.
+ */
+function mpp_light_gallery_shortcode_ajax_handler() {
+	$gallery_ids = array_map( 'absint', explode( ',', $_GET['galleries'] ) );
+
+	if ( ! $gallery_ids ) {
+		exit( 0 );
+	}
+
+	$media_ids = array();
+
+	foreach ( $gallery_ids as $gallery_id ) {
+		$gallery = mpp_get_gallery( $gallery_id );
+		$media_ids = array_merge( $media_ids, mpp_get_all_media_ids( array( 'gallery_id' => $gallery_id, 'component' => $gallery->component, 'component_id' => $gallery->component_id ) ) );
+	}
+
+	$data    = array();
+	$user_id = get_current_user_id();
+
+	array_unique( $media_ids );
+	foreach ( $media_ids as $media_id ) {
+
+		if ( ! mpp_user_can_view_media( $media_id, $user_id ) ) {
+			continue;
+		}
+
+		$info = array(
+			'src'     => mpp_get_media_src( 'photo', $media_id ),
+			'thumb'   => mpp_get_media_src( 'thumbnail', $media_id ),
+			'subHtml' => '<h4>' . mpp_get_media_title( $media_id ) . '</h4><p>' . mpp_get_media_description( $media_id ) . '</p>',
+		);
+
+		$data[] = $info;
+
+	}
+
+	echo json_encode( $data );
+
+	exit;
+}
+
+add_action( 'wp_ajax_mpp_light_gallery_shortcode_get_media', 'mpp_light_gallery_shortcode_ajax_handler' );
+add_action( 'wp_ajax_nopriv_mpp_light_gallery_shortcode_get_media', 'mpp_light_gallery_shortcode_ajax_handler' );

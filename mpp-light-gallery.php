@@ -83,6 +83,7 @@ class MPP_Light_Gallery_Photo_Helper {
 		$files = array(
 			'core/class-mpp-light-gallery-view.php',
 			'core/mpp-light-gallery-actions.php',
+			'core/mpp-light-gallery-filters.php',
 			'core/mpp-light-gallery-functions.php',
 		);
 

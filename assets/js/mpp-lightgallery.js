@@ -36,6 +36,16 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
+    $('.mpp-light-gallery-shortcode img').click(function () {
+
+        var $this = $(this),
+            gallery_ids = $this.parents('.mpp-light-gallery-shortcode').data('galleryIds');
+
+        build_shortcode_light_gallery(gallery_ids, $this);
+
+        return false;
+    });
+
     function build_light_gallery(gallery_id, $el) {
 
         var url = MPP_Light_Gallery.url;
@@ -82,5 +92,28 @@ jQuery(document).ready(function ($) {
                     dynamicEl: resp
                 });
             }, 'json');
+    }
+
+    function build_shortcode_light_gallery(gallery_ids, $el) {
+
+        var url = MPP_Light_Gallery.url;
+        var position = $el.index();
+
+        $.get(
+            url,
+            {
+                action: "mpp_light_gallery_shortcode_get_media",
+                galleries: gallery_ids
+            },
+            function (resp) {
+                $el.lightGallery({
+                    download: false,
+                    index: position,
+                    dynamic: true,
+                    dynamicEl: resp
+                });
+            },
+            'json'
+        );
     }
 });

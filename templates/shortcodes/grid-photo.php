@@ -10,15 +10,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  * You can override it in yourtheme/mediapress/default/shortcodes/grid-photo.php
  *
  */
-$query            = mpp_shortcode_get_media_data( 'query' );
-$media_ids        = join( ',', $query->get_ids() );
+$query     = mpp_shortcode_get_media_data( 'query' );
+$media_ids = join( ',', $query->get_ids() );
+
+$gallery_ids = isset( $query->query, $query->query['post_parent__in'] ) ? $query->query['post_parent__in'] : array();
 
 ?>
 <?php if ( $query->have_media() ) : ?>
 	<div class="mpp-container mpp-shortcode-wrapper mpp-shortcode-media-list-wrapper">
-		<div class="mpp-g mpp-item-list mpp-media-list mpp-shortcode-item-list mpp-shortcode-list-media mpp-shortcode-list-media-photo" data-media-ids="<?php echo $media_ids; ?>">
+		<div class="mpp-g mpp-item-list mpp-media-list mpp-shortcode-item-list mpp-shortcode-list-media mpp-shortcode-list-media-photo mpp-light-gallery-shortcode" data-gallery-ids="<?php echo join( ',', $gallery_ids ); ?>" data-media-ids="<?php echo $media_ids; ?>">
 
-			<?php while ( $query->have_media() ) : $query->the_media(); ?>
+			<?php while( $query->have_media() ) :  $query->the_media(); ?>
 
 				<div class="mpp-u <?php mpp_media_class( mpp_get_grid_column_class( mpp_shortcode_get_media_data( 'column' ) ) ); ?>">
 
@@ -34,28 +36,16 @@ $media_ids        = join( ',', $query->get_ids() );
 							'class'            => "mpp-item-thumbnail mpp-media-thumbnail mpp-photo-thumbnail",
 							'data-mpp-context' => 'shortcode',
 						) ); ?>>
-                            <img data-gallery-id="<?php echo mpp_get_current_gallery_id(); ?>"
-                                 data-media-id="<?php mpp_media_id(); ?>" src="<?php mpp_media_src( 'thumbnail' ); ?>"
-                                 alt="<?php echo esc_attr( mpp_get_media_title() ); ?> "/>
+                            <img src="<?php mpp_media_src( 'thumbnail' ); ?>" alt="<?php mpp_media_title(); ?> "/>
 						</a>
 
 					</div>
 
-					<a href="<?php mpp_media_permalink(); ?>" <?php mpp_media_html_attributes( array(
-						'class'            => "mpp-item-title mpp-media-title mpp-photo-title",
-						'data-mpp-context' => 'shortcode',
-					) ); ?> >
-						<?php mpp_media_title(); ?>
-					</a>
 					<?php if ( $show_creator ) : ?>
                         <div class="mpp-media-creator-link mpp-shortcode-media-creator-link">
 							<?php echo $before_creator; ?><?php mpp_media_creator_link(); ?><?php echo $after_creator; ?>
                         </div>
 					<?php endif; ?>
-
-                    <div class="mpp-item-actions mpp-media-actions mpp-photo-actions">
-						<?php mpp_media_action_links(); ?>
-					</div>
 
 					<div class="mpp-item-meta mpp-media-meta mpp-media-shortcode-item-meta mpp-media-meta-bottom mpp-media-shortcode-item-meta-bottom">
 						<?php do_action( 'mpp_media_shortcode_item_meta' ); ?>
