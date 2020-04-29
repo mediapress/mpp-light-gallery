@@ -108,7 +108,7 @@ class MPP_Light_Gallery_Photo_Helper {
 		wp_register_style( 'jquery-lightgallery', $this->url . 'assets/css/lightgallery.min.css' );
 		wp_register_style( 'mpp-lightgallery', $this->url . 'assets/css/mpp-lightgallery.css', array( 'jquery-lightgallery' ) );
 
-		wp_register_script( 'jquery-lightgallery', $this->url . 'assets/js/lightgallery-all.min.js', array( 'jquery' ) );
+		wp_register_script( 'jquery-lightgallery', $this->url . 'assets/js/lightgallery-all.js', array( 'jquery' ) );
 		wp_register_script( 'jquery-mousewheel', $this->url . 'assets/js/jquery.mousewheel.min.js', array( 'jquery' ) );
 		wp_register_script( 'mpp-lightgallery', $this->url . 'assets/js/mpp-lightgallery.js', array( 'jquery-lightgallery', 'jquery-mousewheel' ) );
 
