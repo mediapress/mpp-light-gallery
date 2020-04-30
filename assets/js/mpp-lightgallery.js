@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
 
     if ( MPP_Light_Gallery.enabled_on_cover ) {
-        $(document).on('click', '.mpp-gallery-photo a.mpp-gallery-cover img', function (e) {
+        $(document).on('click', '.mpp-gallery-photo.mpp-gallery-view-light-gallery a.mpp-gallery-cover img', function (e) {
             e. preventDefault();
 
             var $this = $(this);
@@ -14,7 +14,7 @@ jQuery(document).ready(function ($) {
     }
 
     if ( 'light-gallery' == MPP_Light_Gallery.activity_default_view ) {
-        $(document).on('click', '.mpp-activity-photo-list img', function (e) {
+        $(document).on('click', '.mpp-light-gallery-activity img', function (e) {
             e. preventDefault();
 
             var $this = $(this),
